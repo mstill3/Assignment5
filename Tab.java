@@ -15,7 +15,7 @@ public class Tab
 	public double getTotal()
 	{
 		double total = 0;
-		for(MenuItem item : aggregator.getMyItems())
+		for(Item item : aggregator.getMyItems())
 			total += item.getPrice();
 		return total;
 	}
@@ -34,13 +34,13 @@ public class Tab
 	public String toString() 
 	{
 		DecimalFormat df = new DecimalFormat("$#,###,##0.00");
-		String str = "\n" + charPrint('=', 100) + "\nMY TAB\n" + charPrint('=', 100) + "\n";
-		for(MenuItem item : aggregator.getMyItems())
+		String str = "\n" + charPrint('=', 125) + "\nMY TAB\n" + charPrint('=', 125) + "\n";
+		for(Item item : aggregator.getMyItems())
 			str += item + "\n";
-		str += charPrint('-', 100) + "\n";
-		str += String.format("%-79sTotal: %s\n", "", df.format(getTotal()));
-		str += String.format("%-81sTax: %s\n", "", df.format(getTaxAmount()));
-		str += String.format("%-79sTotal: %s\n", "", df.format(getTotalWithTax()));
+		str += charPrint('-', 125) + "\n";
+		str += String.format("%-109sTotal: %s\n", "", df.format(getTotal()));
+		str += String.format("%-111sTax: %s\n", "", df.format(getTaxAmount()));
+		str += String.format("%-109sTotal: %s\n", "", df.format(getTotalWithTax()));
 		str += "\n";
 		return str;
 	}

@@ -1,45 +1,63 @@
 import java.util.ArrayList;
 
-public class Menu 
+public class Menu implements Iterator
 {
 
-	private ArrayList<MenuItem> items;
+	private ArrayList<Item> items;
 
 	public Menu() 
 	{
-		items = new ArrayList<MenuItem>();
+		items = new ArrayList<Item>();
 		populate();
 	}
-	
+
 	private void populate()
 	{
-		items.add(new MenuItem("Roast Beef", "Hand-cut Tenderness", 9.60));
-		items.add(new MenuItem("Chicken Korma", "Tasty Chiken delight", 8.75));
-		items.add(new MenuItem("Jiaozi", "Chineese Dumplings", 11.00));
-		items.add(new MenuItem("French Fries", "Lightly salted, crunchy yummyness", 2.75));
-		items.add(new MenuItem("Burger", "100% Angus Beef", 3.15));
-		items.add(new MenuItem("Pizza", "Tomatoy, cheesy deliciousness", 7.50));
+		items.add(new HealthyItem(new MenuItem("Roast Beef", "Hand-cut Tenderness", 9.60), 400));
+		items.add(new HealthyItem(new MenuItem("Chicken Korma", "Tasty Chiken delight", 8.75), 670));
+		items.add(new HealthyItem(new MenuItem("Jiaozi", "Chineese Dumplings", 11.00), 260));
+		items.add(new HealthyItem(new MenuItem("French Fries", "Lightly salted, crunchy yummyness", 2.75), 800));
+		items.add(new HealthyItem(new MenuItem("Burger", "100% Angus Beef", 3.15), 790));
+		items.add(new HealthyItem(new MenuItem("Pizza", "Tomatoy, cheesy deliciousness", 7.50), 1100));
 	}
-	
+
 	public int getNumItems()
 	{
 		return items.size();
 	}
-	
-	public MenuItem getItemByNum(int num)
+
+	public Item getItemByNum(int num)
 	{
 		return items.get(num - 1);
 	}
-	
+
+
+	private int current = 0;
+
+	@Override
+	public boolean hasNext() 
+	{
+		return current+1 <= items.size();
+	}
+
+	@Override
+	public Object next() 
+	{
+		return items.get(current++);
+	}
+
 	@Override
 	public String toString() 
 	{
-		String str = "\n" + charPrint('=', 100) + "\nMENU\n" + charPrint('=', 100) + "\n";
-		for(MenuItem item : items)
-			str += item + "\n";
+		String str = "\n" + charPrint('=', 125) + "\nMENU\n" + charPrint('=', 125) + "\n";
+		while(hasNext())
+		{
+			str += next() + "\n";
+		}
+		current = 0;
 		return str;
 	}
-	
+
 	private String charPrint(char c, int num)
 	{
 		String s = "";

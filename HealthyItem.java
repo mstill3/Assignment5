@@ -1,13 +1,14 @@
 import java.text.DecimalFormat;
 
-public class MenuItem extends Item
+public class HealthyItem extends Decorator
 {
-	
-	public MenuItem(String n, String d, double p)
+
+	public HealthyItem(Item item, int calories)
 	{
-		name = n;
-		description = d;
-		price = p;
+		name = item.name;
+		description = item.description;
+		price = item.price;
+		this.calories = calories;
 	}
 
 	public String getName() 
@@ -40,11 +41,21 @@ public class MenuItem extends Item
 		this.price = price;
 	}
 	
+	public int getCalories() 
+	{
+		return calories;
+	}
+
+	public void setCalories(int cals) 
+	{
+		calories = cals;
+	}
+	
 	@Override
 	public String toString() 
 	{
 		DecimalFormat df = new DecimalFormat("$#,###,##0.00");
-		return String.format("Name: %-20sDescription: %-40sPrice: %s", name, description, df.format(price));
+		return String.format("Name: %-20sDescription: %-40sCalories: %-20sPrice: %s", name, description, calories, df.format(price));
 	}
 	
 }

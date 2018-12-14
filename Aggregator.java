@@ -18,16 +18,16 @@ public class Aggregator
 		generate();
 	}
 	
-	private ArrayList<MenuItem> myItems;
+	private ArrayList<Item> myItems;
 	private void generate()
 	{
-		myItems = new ArrayList<MenuItem>();
+		myItems = new ArrayList<Item>();
 		for(OrderItem i : order.getItems())
 			myItems.add(menu.getItemByNum(i.getNum()));
 		tab = new Tab(this);
 	}
 	
-	public ArrayList<MenuItem> getMyItems()
+	public ArrayList<Item> getMyItems()
 	{
 		return myItems;
 	}
