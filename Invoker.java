@@ -17,26 +17,21 @@ public class Invoker
 	
 	public String getMenu()
 	{
-		GetMenuCommand getMenu = aggregator.createDisplayMenu();
+		GetMenuCommand getMenu = new GetMenuCommand(aggregator);
 		String results = getMenu.execute();
 		return results;
 	}
 	
-	public void updateOrder(Order o)
-	{
-		aggregator.setOrder(o);
-	}
-	
 	public String submitOrder()
 	{
-		SubmitOrderCommand subOrder = aggregator.createSubmitOrder();
+		SubmitOrderCommand subOrder = new SubmitOrderCommand(aggregator);
 		String results = subOrder.execute();
 		return results;
 	}
 	
 	public String getTab()
 	{
-		GetTabCommand getTab = aggregator.createDisplayTab();
+		GetTabCommand getTab = new GetTabCommand(aggregator);
 		String results = getTab.execute();
 		return results;
 	}

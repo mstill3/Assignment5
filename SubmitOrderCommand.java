@@ -2,17 +2,17 @@
 public class SubmitOrderCommand implements Command
 {
 
-	private Order order;
+	Aggregator aggregator;
 	
-	public SubmitOrderCommand(Order order) 
+	public SubmitOrderCommand(Aggregator agg)
 	{
-		this.order = order;
+		aggregator = agg;
 	}
 
 	@Override
 	public String execute()
 	{
-		return order.toString();
+		return aggregator.getOrder().toString();
 	}
 
 }

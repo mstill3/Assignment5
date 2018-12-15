@@ -1,18 +1,17 @@
 
 public class GetMenuCommand implements Command
 {
-
-	private Menu menu;
+	Aggregator aggregator;
 	
-	public GetMenuCommand(Menu menu) 
+	public GetMenuCommand(Aggregator agg)
 	{
-		this.menu = menu;
+		aggregator = agg;
 	}
 
 	@Override
 	public String execute()
 	{
-		return menu.toString();
+		return aggregator.getMenu().toString();
 	}
 
 }

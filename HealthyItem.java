@@ -5,6 +5,7 @@ public class HealthyItem extends Decorator
 
 	public HealthyItem(Item item, int calories)
 	{
+		itemNum = item.itemNum;
 		name = item.name;
 		description = item.description;
 		price = item.price;
@@ -55,7 +56,7 @@ public class HealthyItem extends Decorator
 	public String toString() 
 	{
 		DecimalFormat df = new DecimalFormat("$#,###,##0.00");
-		return String.format("Name: %-20sDescription: %-40sCalories: %-20sPrice: %s", name, description, calories, df.format(price));
+		return String.format("# %-5d Name: %-20sDescription: %-40sCalories: %-20sPrice: %s", itemNum,  name, description, calories, df.format(price));
 	}
 	
 }

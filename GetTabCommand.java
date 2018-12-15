@@ -2,17 +2,18 @@
 public class GetTabCommand implements Command
 {
 
-	private Tab tab;
+	private Aggregator aggregator;
 	
-	public GetTabCommand(Tab tab) 
+	public GetTabCommand(Aggregator agg)
 	{
-		this.tab = tab;
+		aggregator = agg;
 	}
 
 	@Override
 	public String execute()
 	{
-		return tab.toString();
+		Tab t = new Tab(aggregator);
+		return t.toString();
 	}
 
 }

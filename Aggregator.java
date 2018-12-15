@@ -15,22 +15,8 @@ public class Aggregator
 	{
 		menu = m;
 		order = o;
-		generate();
 	}
-	
-	private ArrayList<Item> myItems;
-	private void generate()
-	{
-		myItems = new ArrayList<Item>();
-		for(OrderItem i : order.getItems())
-			myItems.add(menu.getItemByNum(i.getNum()));
-		tab = new Tab(this);
-	}
-	
-	public ArrayList<Item> getMyItems()
-	{
-		return myItems;
-	}
+
 	
 	public Menu getMenu()
 	{
@@ -41,27 +27,7 @@ public class Aggregator
 	{
 		return order;
 	}
-	
-	public void setOrder(Order o)
-	{
-		order = o;
-	}
 
-	public GetMenuCommand createDisplayMenu() 
-	{
-		return new GetMenuCommand(menu);
-	}
-
-	public SubmitOrderCommand createSubmitOrder() 
-	{
-		return new SubmitOrderCommand(order);
-	}
-
-	public GetTabCommand createDisplayTab() 
-	{
-		generate();
-		return new GetTabCommand(tab);
-	}
 	
 
 }

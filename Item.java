@@ -1,7 +1,7 @@
 
 public abstract class Item 
 {
-
+	int itemNum;
 	protected String name;
 	protected String description;
 	protected double price;

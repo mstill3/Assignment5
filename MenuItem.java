@@ -2,15 +2,25 @@ import java.text.DecimalFormat;
 
 public class MenuItem extends Item
 {
-	
-	public MenuItem(String n, String d, double p)
+	public MenuItem(int i, String n, String d, double p)
 	{
+		itemNum = i;
 		name = n;
 		description = d;
 		price = p;
 	}
 
-	public String getName() 
+	public int getItemNum()
+	{
+		return itemNum;
+	}
+
+	public void setItemNum(int itemNum)
+	{
+		this.itemNum = itemNum;
+	}
+
+	public String getName()
 	{
 		return name;
 	}
@@ -44,7 +54,7 @@ public class MenuItem extends Item
 	public String toString() 
 	{
 		DecimalFormat df = new DecimalFormat("$#,###,##0.00");
-		return String.format("Name: %-20sDescription: %-40sPrice: %s", name, description, df.format(price));
+		return String.format("# %-5d Name: %-20sDescription: %-40sPrice: %s", itemNum, name, description, df.format(price));
 	}
 	
 }

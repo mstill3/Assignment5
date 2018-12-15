@@ -11,14 +11,26 @@ public class Menu implements Iterator
 		populate();
 	}
 
-	private void populate()
+	public void populate()
 	{
-		items.add(new HealthyItem(new MenuItem("Roast Beef", "Hand-cut Tenderness", 9.60), 400));
-		items.add(new HealthyItem(new MenuItem("Chicken Korma", "Tasty Chiken delight", 8.75), 670));
-		items.add(new HealthyItem(new MenuItem("Jiaozi", "Chineese Dumplings", 11.00), 260));
-		items.add(new HealthyItem(new MenuItem("French Fries", "Lightly salted, crunchy yummyness", 2.75), 800));
-		items.add(new HealthyItem(new MenuItem("Burger", "100% Angus Beef", 3.15), 790));
-		items.add(new HealthyItem(new MenuItem("Pizza", "Tomatoy, cheesy deliciousness", 7.50), 1100));
+		if(items.size() <= 0) {
+			items.add(new HealthyItem(new MenuItem(1, "Roast Beef", "Hand-cut Tenderness", 9.60), 400));
+			items.add(new HealthyItem(new MenuItem(2, "Chicken Korma", "Tasty Chiken delight", 8.75), 670));
+			items.add(new HealthyItem(new MenuItem(3, "Jiaozi", "Chineese Dumplings", 11.00), 260));
+			items.add(new HealthyItem(new MenuItem(4, "French Fries", "Lightly salted, crunchy yummyness", 2.75), 800));
+			items.add(new HealthyItem(new MenuItem(5, "Burger", "100% Angus Beef", 3.15), 790));
+			items.add(new HealthyItem(new MenuItem(6, "Pizza", "Tomatoy, cheesy deliciousness", 7.50), 1100));
+		}
+	}
+
+	public ArrayList<Item> getItems()
+	{
+		return items;
+	}
+
+	public void add(Item i)
+	{
+		items.add(i);
 	}
 
 	public int getNumItems()
@@ -29,6 +41,16 @@ public class Menu implements Iterator
 	public Item getItemByNum(int num)
 	{
 		return items.get(num - 1);
+	}
+
+	public float getPrice()
+	{
+		float total = 0;
+		for( Item i : items)
+		{
+			total += i.price;
+		}
+		return total;
 	}
 
 
@@ -49,7 +71,7 @@ public class Menu implements Iterator
 	@Override
 	public String toString() 
 	{
-		String str = "\n" + charPrint('=', 125) + "\nMENU\n" + charPrint('=', 125) + "\n";
+		String str = "\n" + charPrint('=', 135) + "\nMENU\n" + charPrint('=', 135) + "\n";
 		while(hasNext())
 		{
 			str += next() + "\n";

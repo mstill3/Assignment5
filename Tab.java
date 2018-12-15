@@ -1,4 +1,5 @@
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 // totaling all of the ordered items
 
@@ -11,36 +12,31 @@ public class Tab
 	{
 		aggregator = agg;
 	}
-	
-	public double getTotal()
-	{
-		double total = 0;
-		for(Item item : aggregator.getMyItems())
-			total += item.getPrice();
-		return total;
-	}
+
 	
 	public double getTaxAmount()
 	{
-		return getTotal() * SystemInterface.TAX;
+		return aggregator.getMenu().getPrice() * SystemInterface.TAX;
 	}
 	
 	public double getTotalWithTax()
 	{
-		return getTotal() + getTaxAmount();
+		return aggregator.getMenu().getPrice() + getTaxAmount();
 	}
 	
 	@Override
 	public String toString() 
 	{
 		DecimalFormat df = new DecimalFormat("$#,###,##0.00");
-		String str = "\n" + charPrint('=', 125) + "\nMY TAB\n" + charPrint('=', 125) + "\n";
-		for(Item item : aggregator.getMyItems())
+		String str = "\n" + charPrint('=', 135) + "\nMY TAB\n" + charPrint('=', 135) + "\n";
+		ArrayList<Item> items = aggregator.getMenu().getItems();
+		for(Item item : items){
 			str += item + "\n";
-		str += charPrint('-', 125) + "\n";
-		str += String.format("%-109sTotal: %s\n", "", df.format(getTotal()));
-		str += String.format("%-111sTax: %s\n", "", df.format(getTaxAmount()));
-		str += String.format("%-109sTotal: %s\n", "", df.format(getTotalWithTax()));
+		}
+		str += charPrint('-', 135) + "\n";
+		str += String.format("%-117sTotal: %s\n", "", df.format(aggregator.getMenu().getPrice()));
+		str += String.format("%-119sTax: %s\n", "", df.format(getTaxAmount()));
+		str += String.format("%-117sTotal: %s\n", "", df.format(getTotalWithTax()));
 		str += "\n";
 		return str;
 	}
